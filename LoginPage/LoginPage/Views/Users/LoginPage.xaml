@@ -6,13 +6,65 @@
              Shell.NavBarIsVisible="False"
              >
     <VerticalStackLayout>
-        <Grid>
+        <Grid VerticalOptions="FillAndExpand" HorizontalOptions="FillAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+       
+        
+        
+        <BoxView
+            IsVisible="{Binding MessageVisibility}"
+            BackgroundColor="Black"
+            Opacity="0.6"
+            InputTransparent="False"
+            Grid.RowSpan="10"
+            Grid.ColumnSpan="10"
+            HorizontalOptions="FillAndExpand"
+            VerticalOptions="FillAndExpand"
+            HeightRequest="1000"
+            />
+
+
+
+
+        <Grid Grid.Row="0" IsVisible="{Binding Visibility}">
             <Image Source="leftarrow.png" HeightRequest="50" Margin="-330,20,0,60"   ZIndex="1"/>
         </Grid>
 
-        <Label Text="Bem-vindo de volta" TextColor="#EEE8F1" HorizontalOptions="Center" FontSize="40" FontFamily="InterBold" FontAttributes="Bold" Margin="0,0,0,60"/>
+        <Label IsVisible="{Binding Visibility}" Grid.Row="1" Text="Bem-vindo de volta" TextColor="#EEE8F1" HorizontalOptions="Center" FontSize="40" FontFamily="InterBold" FontAttributes="Bold" Margin="0,0,0,60"/>
 
-        <Grid>
+
+
+        <Border Grid.Row="2"  BackgroundColor="#e7e7e7" HeightRequest="300" WidthRequest="360" StrokeShape="RoundRectangle 10 10 10 10" Margin="0,100,0,0" IsVisible="{Binding MessageVisibility}" >
+            <Grid IsVisible="{Binding MessageVisibility}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                 <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+                
+                <Label Grid.Row="0" Text="{Binding Message}" TextColor="#4F1271" HorizontalOptions="Center" FontSize="25" Margin="0,10,0,10"/>
+            <Image Grid.Row="1" Source="linemessage.png" HeightRequest="300" WidthRequest="500" Margin="0,-150,0,0" />
+            <Label Grid.Row="2" Text="{Binding Message2}" IsVisible="{Binding MessageVisibility}" Margin="0,-80,0,0" FontSize="20" HorizontalOptions="Center" HorizontalTextAlignment="Center"/>
+            <Button Grid.Row="3" Text="Continuar" CornerRadius="100" Command="{Binding RemoveCommand}" BackgroundColor="#4F1271" WidthRequest="150" VerticalOptions="End" Margin="0,20,0,0"/>
+
+
+        </Grid>
+        </Border>
+
+
+
+        <Grid Grid.Row="3" IsVisible="{Binding Visibility}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
@@ -25,7 +77,7 @@
                     <Image Source="User_icon" HorizontalOptions="Center" HeightRequest="45" />
                 </Border>
                 <Border StrokeShape="RoundRectangle 0 10 0 10" BackgroundColor="#e7e7e7" Margin="0,30,20,0" WidthRequest="300" HorizontalOptions="End" HeightRequest="70">
-                    <Entry Grid.Row="1" Placeholder="E-mail" PlaceholderColor="#4F1271" Margin="10,0,0,0" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Nome}"></Entry>
+                    <Entry Grid.Row="1" Placeholder="{Binding EmptyEmail}" PlaceholderColor="{Binding EmptyCredential}" Margin="10,0,0,0" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding UserEmail}"></Entry>
                 </Border>
 
 
@@ -37,28 +89,28 @@
                     <Image Source="password_icon" HorizontalOptions="Center" HeightRequest="45" />
                 </Border>
                 <Border StrokeShape="RoundRectangle 0 10 0 10" BackgroundColor="#e7e7e7" Margin="0,30,20,0" WidthRequest="300" HorizontalOptions="End" HeightRequest="70">
-                    <Entry Grid.Row="1" Placeholder="Senha" PlaceholderColor="#4F1271" Margin="10,0,0,0" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding Nome}"></Entry>
+                    <Entry IsPassword="{Binding IsPassword}" Grid.Row="1" Placeholder="{Binding EmptyPassword}" PlaceholderColor="{Binding CredentialFilled}" Margin="10,0,0,0" FontAttributes="Bold" FontFamily="InterBold" HeightRequest="55" Text="{Binding UserPassword}"></Entry>
                 </Border>
-                <Image Source="openeye.png" HeightRequest="25" HorizontalOptions="End" Margin="0,25,35,0"/>
+                <ImageButton Source="{Binding HidePasswordImage}" HeightRequest="25" HorizontalOptions="End" Margin="0,25,10,0" Command="{Binding HidePasswordCommand}"/>
             </Grid>
 
             <Button Grid.Row="3" Text="Esqueceu sua senha?" BackgroundColor="Transparent" HorizontalOptions="End" Margin="0,0,20,0"/>
         </Grid>
 
 
-        <Grid Margin="0,-20,0,0">
+        <Grid Margin="0,-20,0,0" Grid.Row="4" IsVisible="{Binding Visibility}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
 
-            <Button Grid.Row="0" Text="Entrar" Margin="0,70,0,0" BackgroundColor="#e7e7e7" TextColor="#4F1271" HeightRequest="60" WidthRequest="270" FontSize="17" FontAttributes="Bold" FontFamily="InterBold" Command="{Binding RegistrarCommand}"></Button>
+            <Button Grid.Row="0" Text="Entrar" Margin="0,70,0,0" Command="{Binding  VerifyCredentialsCommand }" BackgroundColor="#e7e7e7" TextColor="#4F1271" HeightRequest="60" WidthRequest="270" FontSize="17" FontAttributes="Bold" FontFamily="InterBold" ></Button>
             <Label Text="Não possui conta?" Grid.Row="1" HorizontalOptions="Center" Margin="0,15,90,0" FontSize="17" TextColor="#EEE8F1"/>
             <Button Text="CRIAR CONTA" Grid.Row="1" BackgroundColor="Transparent" WidthRequest="120" HorizontalOptions="End" FontAttributes="Bold" Margin="0,7,65,0"/>
         </Grid>
 
-        <Grid>
+        <Grid Grid.Row="5" IsVisible="{Binding Visibility}">
 
 
             <Grid Margin="0,60,0,0">
@@ -90,6 +142,6 @@
 
 
         </Grid>
-
+        </Grid>
     </VerticalStackLayout>
 </ContentPage>
