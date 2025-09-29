@@ -1,4 +1,6 @@
 namespace LoginPage.Views.Users;
+
+
 public partial class InitialPage : ContentPage
 {
 	public InitialPage()
@@ -6,9 +8,8 @@ public partial class InitialPage : ContentPage
 		InitializeComponent();
 	}
 
-   
 
-    private async void login_Clicked(object sender, EventArgs e)
+    private  async void login_Clicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new LoginPage());
     }

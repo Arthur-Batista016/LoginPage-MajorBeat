@@ -1,4 +1,6 @@
-﻿namespace LoginPage
+﻿using LoginPage.Views.Users;
+
+namespace LoginPage
 {
     public partial class App : Application
     {
@@ -6,7 +8,7 @@
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new AppShell() ;
         }
     }
 }

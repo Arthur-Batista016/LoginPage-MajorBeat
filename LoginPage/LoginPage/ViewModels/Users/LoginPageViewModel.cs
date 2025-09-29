@@ -1,6 +1,5 @@
-﻿using Android.Media;
-using CommunityToolkit.Mvvm.ComponentModel;
-using Java.Lang;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
+using LoginPage.Views.Musicians;
 using System.Globalization;
 using System.Windows.Input;
 
@@ -64,7 +63,7 @@ namespace LoginPage.ViewModels.Users
 
         public void InicializarCommands()
         {
-            RemoveCommand = new Command(async () => await RemoveMessage());
+
             VerifyCredentialsCommand = new Command(async () => await VerificarCredenciais());
             HidePasswordCommand = new Command(async () => await hidePassword());
         }
@@ -123,11 +122,7 @@ namespace LoginPage.ViewModels.Users
 
         }
 
-        public async Task RemoveMessage()
-        {
-            MessageVisibility = false;
-
-        }
+        
 
         public async Task hidePassword()
         {
